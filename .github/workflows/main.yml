@@ -10,8 +10,8 @@ jobs:
       uses: actions/checkout@v2
     - name: connect to ec2
       env:
-        PRIVATE_KEY: ${{ secerets.privateKey }}
-        HOSTNAME: ${{ secrets.hostname }}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        HOSTNAME: ${{ secrets.HOSTNAME }}
         USER: ubuntu
       run: |
         echo "Connecting to ec2 "
