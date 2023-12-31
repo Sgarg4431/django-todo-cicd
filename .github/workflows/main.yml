@@ -8,9 +8,4 @@ jobs:
   steps:
     - name: checkout the code
       uses: actions/checkout@v2
-    - name: deploying the code
-      run: |
-        sudo apt install docker.io
-        sudo usermod -aG docker ubuntu
-        sudo apt install docker-compose
-        docker-compose down && docker-compose up
+    
