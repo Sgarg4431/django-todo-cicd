@@ -1,0 +1,19 @@
+name: django-cicd
+on:
+  push:
+    branches: [master]
+jobs: 
+ deploy:  
+  runs-on: ubuntu:latest
+  steps:
+    - name: checkout the code
+      uses: actions/checkout@v2
+    - name: connect to ec2
+      env:
+        PRIVATE_KEY: ${{ secerets.privateKey }}
+        HOSTNAME: ${{ secrets.hostname }}
+        USER: ubuntu
+      run: |
+        echo "Connecting to ec2 "
+        ssh -i ${PRIVATE_KEY} ${USER}@${HOSTNAME}
+        echo "connection successfull"
