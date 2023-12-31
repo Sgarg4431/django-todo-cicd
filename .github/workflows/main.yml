@@ -18,3 +18,5 @@ jobs:
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         ssh -i private_key ${USER}@${HOSTNAME} -y
         echo "connection successfull"
+    - name: deploying the code
+      run: docker-compose down && docker-compose up
