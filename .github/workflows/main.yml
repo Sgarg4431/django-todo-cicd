@@ -15,5 +15,6 @@ jobs:
         USER: ubuntu
       run: |
         echo "Connecting to ec2 "
-        ssh -i ${PRIVATE_KEY} ${USER}@${HOSTNAME}
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        ssh -i private_key ${USER}@${HOSTNAME}
         echo "connection successfull"
