@@ -19,4 +19,8 @@ jobs:
         ssh -i private_key ${USER}@${HOSTNAME} -y
         echo "connection successfull"
     - name: deploying the code
-      run: docker-compose down && docker-compose up
+      run: |
+        sudo apt install docker.io
+        sudo usermod -aG docker ubuntu
+        sudo apt install docker-compose
+        docker-compose down && docker-compose up
