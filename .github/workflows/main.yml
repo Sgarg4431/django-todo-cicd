@@ -4,23 +4,10 @@ on:
     branches: [develop]
 jobs: 
  deploy:  
-  runs-on: self-hosted
+  runs-on: [aws-ec2]
   steps:
     - name: checkout the code
       uses: actions/checkout@v2
-    - name: connect to ec2
-      env:
-        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        HOSTNAME: ${{ secrets.HOSTNAME }}
-        USER: ubuntu
-      run: |
-        echo "Connecting to ec2 "
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -i private_key ${USER}@${HOSTNAME} -y
-        echo "connection successfull"
     - name: deploying the code
       run: |
-        sudo apt install docker.io
-        sudo usermod -aG docker ubuntu
-        sudo apt install docker-compose
         docker-compose down && docker-compose up
